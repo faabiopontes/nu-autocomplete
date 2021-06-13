@@ -5,7 +5,9 @@ interface AutocompleteProps {
 
 const Autocomplete = ({ suggestions = [] }: AutocompleteProps) => {
   const [activeSuggestion, setActiveSuggestion] = useState(0);
-  const [filteredSuggestions, setFilteredSuggestions] = useState<AutocompleteProps["suggestions"]>([]);
+  const [filteredSuggestions, setFilteredSuggestions] = useState<
+    AutocompleteProps["suggestions"]
+  >([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [userInput, setUserInput] = useState("");
 
@@ -27,28 +29,27 @@ const Autocomplete = ({ suggestions = [] }: AutocompleteProps) => {
     const pressedKey = e.key;
     console.log({ pressedKey });
 
-    switch(pressedKey) {
-      case 'Enter': 
-      
+    switch (pressedKey) {
+      case "Enter":
         setActiveSuggestion(0);
         setShowSuggestions(false);
         setUserInput(filteredSuggestions[activeSuggestion]);
         break;
 
-      case 'ArrowUp':
+      case "ArrowUp":
         if (activeSuggestion === 0) {
           return;
         }
 
-        setActiveSuggestion(activeSuggestion => activeSuggestion - 1);
+        setActiveSuggestion((activeSuggestion) => activeSuggestion - 1);
         break;
 
-      case 'ArrowDown':
+      case "ArrowDown":
         if (activeSuggestion - 1 === filteredSuggestions.length) {
           return;
         }
 
-        setActiveSuggestion(activeSuggestion => activeSuggestion + 1);
+        setActiveSuggestion((activeSuggestion) => activeSuggestion + 1);
         break;
     }
   };
@@ -69,7 +70,7 @@ const Autocomplete = ({ suggestions = [] }: AutocompleteProps) => {
         <ul className="suggestions">
           {filteredSuggestions.map((suggestion, index) => {
             let className;
-            
+
             if (index === activeSuggestion) {
               className = "suggestion-active";
             }
