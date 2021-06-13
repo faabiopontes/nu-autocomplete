@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { KeyboardEvent, MouseEvent, useState } from "react";
 interface AutocompleteProps {
   suggestions: string[];
 }
@@ -22,8 +22,45 @@ const Autocomplete = ({ suggestions = [] }: AutocompleteProps) => {
     setShowSuggestions(true);
     setUserInput(userInput);
   };
-  const onKeyDown = () => {};
-  const onClick = () => {};
+
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    const pressedKey = e.key;
+    console.log({ pressedKey });
+
+    switch(pressedKey) {
+      case 'Enter': 
+      
+        setActiveSuggestion(0);
+        setShowSuggestions(false);
+        setUserInput(filteredSuggestions[activeSuggestion]);
+        break;
+
+      case 'ArrowUp':
+        if (activeSuggestion === 0) {
+          return;
+        }
+
+        setActiveSuggestion(activeSuggestion => activeSuggestion - 1);
+        break;
+
+      case 'ArrowDown':
+        if (activeSuggestion - 1 === filteredSuggestions.length) {
+          return;
+        }
+
+        setActiveSuggestion(activeSuggestion => activeSuggestion + 1);
+        break;
+    }
+  };
+
+  const onClick = (e: MouseEvent<HTMLLIElement>) => {
+    const selectedElementText = e.currentTarget.innerText;
+
+    setActiveSuggestion(0);
+    setFilteredSuggestions([]);
+    setShowSuggestions(false);
+    setUserInput(selectedElementText);
+  };
 
   let suggestionsListComponent;
   if (showSuggestions && userInput) {
@@ -31,8 +68,14 @@ const Autocomplete = ({ suggestions = [] }: AutocompleteProps) => {
       suggestionsListComponent = (
         <ul className="suggestions">
           {filteredSuggestions.map((suggestion, index) => {
+            let className;
+            
+            if (index === activeSuggestion) {
+              className = "suggestion-active";
+            }
+
             return (
-              <li key={suggestion} onClick={onClick}>
+              <li className={className} key={suggestion} onClick={onClick}>
                 {suggestion}
               </li>
             );
