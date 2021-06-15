@@ -11,7 +11,8 @@ const headers: IHeaders = {
 };
 
 if (githubPersonalAccessToken) {
-  headers.Authorization = `Bearer ${githubPersonalAccessToken}`;
+  // Commented out because Bad Request 401 is happening
+  // headers.Authorization = `Bearer ${githubPersonalAccessToken}`;
 }
 
 const api = axios.create({

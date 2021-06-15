@@ -1,17 +1,20 @@
-import { KeyboardEvent, MouseEvent, useState } from "react";
-import { searchIssuesByText } from '../services/api';
-import { IResponseIssuesItems } from '../services/types';
+import { KeyboardEvent, useState } from "react";
+import { searchIssuesByText } from "../services/api";
+import { IResponseIssuesItems } from "../services/types";
+import IssuesListComponent from "./IssuesListComponent";
 
 const GitHubAutocomplete = () => {
   const [activeIssue, setActiveIssue] = useState(0);
-  const [filteredIssues, setFilteredIssues] = useState<IResponseIssuesItems[]>([]);
+  const [filteredIssues, setFilteredIssues] = useState<IResponseIssuesItems[]>(
+    []
+  );
   const [showIssues, setShowIssues] = useState(false);
   const [userInput, setUserInput] = useState("");
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const userInput = e.currentTarget.value;
     setUserInput(userInput);
-    
+
     const issues = await searchIssuesByText(userInput);
     setActiveIssue(0);
     setFilteredIssues(issues);
@@ -48,43 +51,10 @@ const GitHubAutocomplete = () => {
     }
   };
 
-  const onClick = (e: MouseEvent<HTMLLIElement>) => {
-    const selectedElementText = e.currentTarget.innerText;
-
-    setActiveIssue(0);
-    setFilteredIssues([]);
-    setShowIssues(false);
-    setUserInput(selectedElementText);
+  const onSelect = (selectedIndex: number) => {
+    setActiveIssue(selectedIndex);
+    setShowIssues(true);
   };
-
-  let issuesListComponent;
-  if (showIssues && userInput) {
-    if (filteredIssues.length) {
-      issuesListComponent = (
-        <ul className="issues">
-          {filteredIssues.map(({ id, title, labels}, index) => {
-            let className;
-
-            if (index === activeIssue) {
-              className = "issue-active";
-            }
-
-            return (
-              <li className={className} key={id} onClick={onClick}>
-                {title}
-              </li>
-            );
-          })}
-        </ul>
-      );
-    } else {
-      issuesListComponent = (
-        <div className="no-issues">
-          <em>No issues found!</em>
-        </div>
-      );
-    }
-  }
 
   return (
     <>
@@ -95,7 +65,13 @@ const GitHubAutocomplete = () => {
         // create a onBlur event to hide the list?
         value={userInput}
       />
-      {issuesListComponent}
+      {userInput && showIssues && (
+        <IssuesListComponent
+          onSelect={onSelect}
+          issues={filteredIssues}
+          activeIndex={activeIssue}
+        />
+      )}
     </>
   );
 };
