@@ -19,34 +19,34 @@ input {
   width: 300px;
 }
 
-.no-suggestions {
+.no-issues {
   color: #364156;
   padding: 0.5rem;
 }
 
-.suggestions {
+.issues {
   border: 1px solid #364156;
   border-top-width: 0;
   list-style: none;
-  margin-top: 20px;
-  max-height: 143px;
+  margin-top: 0px;
   overflow-y: auto;
   padding-left: 0;
   width: calc(300px + 1rem);
+  max-width: 100%;
 }
 
-.suggestions li {
+.issues li {
   padding: 0.5rem;
 }
 
-.suggestion-active,
-.suggestions li:hover {
+.Issue-active,
+.issues li:hover {
   background-color: #364156;
   color: #fff;
   cursor: pointer;
   font-weight: 700;
 }
 
-.suggestions li:not(:last-of-type) {
+.issues li:not(:last-of-type) {
   border-bottom: 1px solid #364156;
 }

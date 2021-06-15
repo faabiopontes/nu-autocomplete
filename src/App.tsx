@@ -1,10 +1,8 @@
-import Autocomplete from "./components/Autocomplete";
+import GitHubAutocomplete from "./components/GitHubAutocomplete";
 
 const App = () => (
   <div className="App">
-    <Autocomplete
-      suggestions={["White", "Black", "Green", "Blue", "Yellow", "Red"]}
-    />
+    <GitHubAutocomplete />
   </div>
 );
 
