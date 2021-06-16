@@ -1,4 +1,4 @@
-# NuAUTOCOMPLETE | Something Something Reimagined
+# NuAUTOCOMPLETE | React Issues Reimagined
 
 After `yarn && yarn start` is run inside the project folder, and it works, you should see a input field, where terms can be typed so they shall be searched through all [Facebook React GitHub Issues](https://github.com/facebook/react/issues)
 
