@@ -16,8 +16,9 @@ const GitHubAutocomplete = () => {
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const userInput = e.currentTarget.value;
     setUserInput(userInput);
-    
+
     if (!userInput) {
+      setShowIssues(false);
       return;
     }
 
