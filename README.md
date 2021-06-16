@@ -4,7 +4,7 @@ After `yarn && yarn start` is run inside the project folder, and it works, you s
 
 When said input field is selected you can use the `UP` and `DOWN` keyboard keys to go through the results shown
 
-By clicking or pressing Enter when a specific issue is selected a new tab will open with their page
+By clicking or pressing `ENTER` when a specific issue is selected a new tab will open with their page
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
