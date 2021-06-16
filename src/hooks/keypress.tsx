@@ -13,11 +13,7 @@ interface KeyboardEvent {
  */
 export const useKeyPress = (key: string, callback: () => void) => {
   useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      console.log("onKeyDown");
-      console.log({ eventKey: e.key });
-      console.log({ key, callback });
-
+    const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === key) {
         callback();
       }

@@ -48,7 +48,7 @@ const ToastProvider: FC = ({ children }) => {
   );
 };
 
-function useToast(): IToastContextData {
+const useToast = (): IToastContextData => {
   const context = useContext(ToastContext);
 
   if (!context) {

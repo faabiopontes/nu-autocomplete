@@ -30,9 +30,7 @@ const searchAPIDebounced = AwesomeDebouncePromise(
 );
 
 export const searchIssuesByText = async (text: string) => {
-  console.log("searchIssuesByText");
   const terms = [text.trim(), `repo:facebook/react`];
-  console.log({ terms });
 
   const response = await searchAPIDebounced(terms);
   const issues = response.data.items;
