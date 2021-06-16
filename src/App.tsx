@@ -1,9 +1,10 @@
 import GitHubAutocomplete from "./components/GitHubAutocomplete";
 import GlobalStyle from './styles/global';
+import AppProvider from './hooks/index';
 
 
 const App = () => (
-  <>
+  <AppProvider>
     <h1>Welcome to NUAutocomplete</h1>
     <p>Below you should type any term and it will be searched through all React GitHub issues</p>
     <p>When the text field is selected you can use the UP and DOWN keyboard keys to go through the results shown</p>
@@ -29,7 +30,7 @@ const App = () => (
      */}
 
     <GlobalStyle />
-  </>
+  </AppProvider>
 );
 
 export default App;

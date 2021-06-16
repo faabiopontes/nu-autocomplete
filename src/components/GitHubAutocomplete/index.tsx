@@ -1,8 +1,9 @@
 import { KeyboardEvent, useState } from "react";
+import { useToast } from "../../hooks/toast";
 import { searchIssuesByText } from "../../services/api";
 import { IResponseIssuesItems } from "../../services/types";
 import IssuesList from "../IssuesList";
-import { Input, Loading } from './styles';
+import { Input, Loading } from "./styles";
 
 const GitHubAutocomplete = () => {
   const [activeIssue, setActiveIssue] = useState(0);
@@ -12,6 +13,8 @@ const GitHubAutocomplete = () => {
   const [showIssues, setShowIssues] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const { addToast } = useToast();
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const userInput = e.currentTarget.value;
@@ -24,7 +27,11 @@ const GitHubAutocomplete = () => {
       setFilteredIssues(issues);
       setShowIssues(true);
     } catch (err) {
-      debugger;
+      addToast({
+        type: "error",
+        title: err.message,
+        description: `An error as ocurred while searching for issues. Try again later`,
+      });
     } finally {
       setIsLoading(false);
     }
@@ -82,9 +89,7 @@ const GitHubAutocomplete = () => {
           activeIndex={activeIssue}
         />
       )}
-      {isLoading && (
-        <Loading>Loading Issues...</Loading>
-      )}
+      {isLoading && <Loading>Loading Issues...</Loading>}
     </>
   );
 };
