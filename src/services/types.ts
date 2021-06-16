@@ -13,7 +13,7 @@ export interface IResponseIssuesItems {
   id: string;
   url: string;
   title: string;
-  labels: IResponseIssuesItemsLabels;
+  labels: IResponseIssuesItemsLabels[];
 }
 
 interface IResponseIssuesItemsLabels {

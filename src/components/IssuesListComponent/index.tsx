@@ -1,4 +1,5 @@
-import { IResponseIssuesItems } from "../services/types";
+import { IResponseIssuesItems } from "../../services/types";
+import { Label } from './styles';
 
 interface ComponentProps {
   issues: IResponseIssuesItems[];
@@ -37,6 +38,19 @@ const IssuesListComponent = ({
         return (
           <li className={className} key={id} onClick={() => onSelect(index)}>
             {title}
+            <br/>
+            <p>Labels:</p>
+            <ul>
+              {labels.map(({ name, id, color, url }) => (
+                <Label
+                  key={id}
+                  color={color}
+                >
+                  {name}
+                </Label>
+              ))}
+            </ul>
+            
           </li>
         );
       })}

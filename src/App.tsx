@@ -5,6 +5,8 @@ const App = () => (
     <GitHubAutocomplete />
     {/**
      * Pensando em testes aonde que seria o melhor lugar para colocar as coisas?
+     * - Pensar bastante no Single Responsability
+     * - Pensar na escabilidade e facilidade de dar manutenção
      * App
      *  - GitHubAutocomplete repository="facebook/react"
      *    evento: onKeyDown fazendo busca na API

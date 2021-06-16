@@ -4,15 +4,13 @@ import AwesomeDebouncePromise from "awesome-debounce-promise";
 
 const githubPersonalAccessToken =
   process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN;
-console.log({ githubPersonalAccessToken });
 
 const headers: IHeaders = {
   Accept: "application/vnd.github.v3+json",
 };
 
 if (githubPersonalAccessToken) {
-  // Commented out because Bad Request 401 is happening
-  // headers.Authorization = `Bearer ${githubPersonalAccessToken}`;
+  headers.Authorization = `Bearer ${githubPersonalAccessToken}`;
 }
 
 const api = axios.create({
