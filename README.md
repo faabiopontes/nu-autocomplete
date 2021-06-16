@@ -2,6 +2,8 @@
 
 After `yarn && yarn start` is run inside the project folder, and it works, you should see a input field, where terms can be typed so they shall be searched through all [Facebook React GitHub Issues](https://github.com/facebook/react/issues)
 
+GitHub limits the number of requests by minute to 10, so if you want to be able to do more than that there is an `.env.example` file where you can define the `REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN` variable with, you guessed it, a personal access token from GitHub. You can create one [here](https://github.com/settings/tokens/new).
+
 When said input field is selected you can use the `UP` and `DOWN` keyboard keys to go through the results shown
 
 By clicking or pressing `ENTER` when a specific issue is selected a new tab will open with their page
