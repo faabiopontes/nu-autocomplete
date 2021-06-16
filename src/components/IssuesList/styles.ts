@@ -1,22 +1,45 @@
 import styled, { css } from "styled-components";
 
-interface LabelProps {
-  color: string;
+export const NoIssues = styled.div`
+  color: #364156;
+  padding: 0.5rem;
+`;
+
+interface IssueProps {
+  isActive: boolean;
 }
 
-export const Label = styled.span<LabelProps>`
-  border-radius: 24px;
-  padding: 2px 7px;
-  display: inline-block;
-  background-color: #555;
-  font-size: 14px;
+export const Issue = styled.li<IssueProps>`
+  padding: 0.5rem;
 
-  ${({ color }) =>
-    color &&
+  ${({ isActive }) =>
+    isActive &&
     css`
-      border: 1px solid #${color};
-      color: #${color};
+      background-color: #364156;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 700;
     `}
 `;
 
-export const LabelList = styled.ul``;
+export const IssuesList = styled.ul`
+  border: 1px solid #364156;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: calc(300px + 1rem);
+  max-width: 100%;
+
+  ${Issue}:hover {
+    background-color: #364156;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  ${Issue}:not(:last-of-type) {
+    border-bottom: 1px solid #364156;
+  }
+`;

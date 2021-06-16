@@ -1,5 +1,7 @@
 import { IResponseIssuesItems } from "../../services/types";
 import LabelsList from '../LabelsList/index';
+import * as S from './styles';
+import { Issue } from './styles';
 
 interface ComponentProps {
   issues: IResponseIssuesItems[];
@@ -20,30 +22,24 @@ const IssuesList = ({
 }: ComponentProps) => {
   if (!issues.length) {
     return (
-      <div className="no-issues">
-        <em>No issues found!</em>
-      </div>
+      <S.NoIssues>No issues found!</S.NoIssues>
     );
   }
 
   return (
-    <ul className="issues">
+    <S.IssuesList>
       {issues.map(({ id, title, labels }, index) => {
-        let className;
-
-        if (index === activeIndex) {
-          className = "issue-active";
-        }
+        let isActive = index === activeIndex;
 
         return (
-          <li className={className} key={id} onClick={() => onSelect(index)}>
+          <Issue isActive={isActive} key={id} onClick={() => onSelect(index)}>
             {title}
             <br/>
             <LabelsList labels={labels} />
-          </li>
+          </Issue>
         );
       })}
-    </ul>
+    </S.IssuesList>
   );
 };
 

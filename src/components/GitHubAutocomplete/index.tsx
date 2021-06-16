@@ -1,7 +1,8 @@
 import { KeyboardEvent, useState } from "react";
-import { searchIssuesByText } from "../services/api";
-import { IResponseIssuesItems } from "../services/types";
-import IssuesList from "./IssuesList";
+import { searchIssuesByText } from "../../services/api";
+import { IResponseIssuesItems } from "../../services/types";
+import IssuesList from "../IssuesList";
+import { Input } from './styles';
 
 const GitHubAutocomplete = () => {
   const [activeIssue, setActiveIssue] = useState(0);
@@ -58,7 +59,7 @@ const GitHubAutocomplete = () => {
 
   return (
     <>
-      <input
+      <Input
         type="text"
         onChange={onChange}
         onKeyDown={onKeyDown}

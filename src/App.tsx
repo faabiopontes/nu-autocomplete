@@ -2,7 +2,7 @@ import GitHubAutocomplete from "./components/GitHubAutocomplete";
 import GlobalStyle from './styles/global';
 
 const App = () => (
-  <div className="App">
+  <>
     <GitHubAutocomplete />
     {/**
      * Pensando em testes aonde que seria o melhor lugar para colocar as coisas?
@@ -24,7 +24,7 @@ const App = () => (
      */}
 
     <GlobalStyle />
-  </div>
+  </>
 );
 
 export default App;
