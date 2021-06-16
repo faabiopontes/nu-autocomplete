@@ -1,4 +1,4 @@
-import GitHubAutocomplete from "../components/GitHubAutocomplete/index";
+import GitHubAutocomplete from "../../components/GitHubAutocomplete/index";
 
 const Home = () => (
   <>
