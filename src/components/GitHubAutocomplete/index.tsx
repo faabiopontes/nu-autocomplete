@@ -16,9 +16,13 @@ const GitHubAutocomplete = () => {
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const userInput = e.currentTarget.value;
     setUserInput(userInput);
-    setIsLoading(true);
+    
+    if (!userInput) {
+      return;
+    }
 
     try {
+      setIsLoading(true);
       const issues = await searchIssuesByText(userInput);
       setIssues(issues);
       setShowIssues(true);
