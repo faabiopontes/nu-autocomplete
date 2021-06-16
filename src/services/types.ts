@@ -16,9 +16,8 @@ export interface IResponseIssuesItems {
   labels: IResponseIssuesItemsLabels[];
 }
 
-interface IResponseIssuesItemsLabels {
+export interface IResponseIssuesItemsLabels {
   id: number;
-  url: string;
   name: string;
   color: string;
   default: boolean;

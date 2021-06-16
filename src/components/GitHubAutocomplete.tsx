@@ -1,7 +1,7 @@
 import { KeyboardEvent, useState } from "react";
 import { searchIssuesByText } from "../services/api";
 import { IResponseIssuesItems } from "../services/types";
-import IssuesListComponent from "./IssuesListComponent";
+import IssuesList from "./IssuesList";
 
 const GitHubAutocomplete = () => {
   const [activeIssue, setActiveIssue] = useState(0);
@@ -66,7 +66,7 @@ const GitHubAutocomplete = () => {
         value={userInput}
       />
       {userInput && showIssues && (
-        <IssuesListComponent
+        <IssuesList
           onSelect={onSelect}
           issues={filteredIssues}
           activeIndex={activeIssue}

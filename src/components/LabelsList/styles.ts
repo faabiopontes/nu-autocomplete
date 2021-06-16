@@ -4,6 +4,8 @@ interface LabelProps {
   color: string;
 }
 
+export const Container = styled.ul``;
+
 export const Label = styled.span<LabelProps>`
   border-radius: 24px;
   padding: 2px 7px;

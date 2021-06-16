@@ -1,4 +1,5 @@
 import GitHubAutocomplete from "./components/GitHubAutocomplete";
+import GlobalStyle from './styles/global';
 
 const App = () => (
   <div className="App">
@@ -21,6 +22,8 @@ const App = () => (
      *      - Aqui sim vamos ter as issues filtradas
      *      - Vamos poder organizar aqui como vai ser a visualização também
      */}
+
+    <GlobalStyle />
   </div>
 );
 

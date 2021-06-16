@@ -1,5 +1,5 @@
 import { IResponseIssuesItems } from "../../services/types";
-import { Label } from './styles';
+import LabelsList from '../LabelsList/index';
 
 interface ComponentProps {
   issues: IResponseIssuesItems[];
@@ -13,7 +13,7 @@ export interface IssueItem extends HTMLLIElement {
   };
 }
 
-const IssuesListComponent = ({
+const IssuesList = ({
   issues,
   activeIndex,
   onSelect,
@@ -39,18 +39,7 @@ const IssuesListComponent = ({
           <li className={className} key={id} onClick={() => onSelect(index)}>
             {title}
             <br/>
-            <p>Labels:</p>
-            <ul>
-              {labels.map(({ name, id, color, url }) => (
-                <Label
-                  key={id}
-                  color={color}
-                >
-                  {name}
-                </Label>
-              ))}
-            </ul>
-            
+            <LabelsList labels={labels} />
           </li>
         );
       })}
@@ -58,4 +47,4 @@ const IssuesListComponent = ({
   );
 };
 
-export default IssuesListComponent;
+export default IssuesList;
