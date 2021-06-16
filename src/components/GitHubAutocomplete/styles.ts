@@ -7,3 +7,9 @@ export const Input = styled.input`
   width: 100%;
   font-size: 16px;
 `;
+
+export const Loading = styled.div`
+  color: gray;
+  text-align: center;
+  padding: 10px;
+`;

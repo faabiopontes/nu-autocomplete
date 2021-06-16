@@ -2,7 +2,7 @@ import { KeyboardEvent, useState } from "react";
 import { searchIssuesByText } from "../../services/api";
 import { IResponseIssuesItems } from "../../services/types";
 import IssuesList from "../IssuesList";
-import { Input } from './styles';
+import { Input, Loading } from './styles';
 
 const GitHubAutocomplete = () => {
   const [activeIssue, setActiveIssue] = useState(0);
@@ -11,15 +11,23 @@ const GitHubAutocomplete = () => {
   );
   const [showIssues, setShowIssues] = useState(false);
   const [userInput, setUserInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const userInput = e.currentTarget.value;
     setUserInput(userInput);
+    setIsLoading(true);
 
-    const issues = await searchIssuesByText(userInput);
-    setActiveIssue(0);
-    setFilteredIssues(issues);
-    setShowIssues(true);
+    try {
+      const issues = await searchIssuesByText(userInput);
+      setActiveIssue(0);
+      setFilteredIssues(issues);
+      setShowIssues(true);
+    } catch (err) {
+      debugger;
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -73,6 +81,9 @@ const GitHubAutocomplete = () => {
           issues={filteredIssues}
           activeIndex={activeIssue}
         />
+      )}
+      {isLoading && (
+        <Loading>Loading Issues...</Loading>
       )}
     </>
   );
