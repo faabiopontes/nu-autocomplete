@@ -1,5 +1,4 @@
-import { useState, useCallback } from "react";
-import useKeyPress from "../../hooks/keypress";
+import { useState } from "react";
 import { useToast } from "../../hooks/toast";
 import { searchIssuesByText } from "../../services/api";
 import { IResponseIssuesItems } from "../../services/types";
@@ -7,10 +6,7 @@ import IssuesList from "../IssuesList";
 import { Input, Loading } from "./styles";
 
 const GitHubAutocomplete = () => {
-  const [activeIssue, setActiveIssue] = useState(0);
-  const [filteredIssues, setFilteredIssues] = useState<IResponseIssuesItems[]>(
-    []
-  );
+  const [issues, setIssues] = useState<IResponseIssuesItems[]>([]);
   const [showIssues, setShowIssues] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -24,8 +20,7 @@ const GitHubAutocomplete = () => {
 
     try {
       const issues = await searchIssuesByText(userInput);
-      setActiveIssue(0);
-      setFilteredIssues(issues);
+      setIssues(issues);
       setShowIssues(true);
     } catch (err) {
       addToast({
@@ -38,28 +33,6 @@ const GitHubAutocomplete = () => {
     }
   };
 
-  const selectNextIssue = () => {
-    if (activeIssue === filteredIssues.length - 1) {
-      return;
-    }
-
-    setActiveIssue((prevActiveIssue) => prevActiveIssue + 1);
-  };
-  useKeyPress("ArrowDown", () => selectNextIssue());
-
-  const selectPreviousIssue = useCallback(() => {
-    if (activeIssue === 0) {
-      return;
-    }
-
-    setActiveIssue((prevActiveIssue) => prevActiveIssue - 1);
-  }, [activeIssue]);
-  useKeyPress("ArrowUp", () => selectPreviousIssue());
-
-  const onSelect = (selectedIndex: number) => {
-    setActiveIssue(selectedIndex);
-  };
-
   return (
     <>
       <Input
@@ -68,14 +41,7 @@ const GitHubAutocomplete = () => {
         value={userInput}
         placeholder="Type here to get React issues"
       />
-      <p>{activeIssue}</p>
-      {userInput && showIssues && (
-        <IssuesList
-          onSelect={onSelect}
-          issues={filteredIssues}
-          activeIndex={activeIssue}
-        />
-      )}
+      {userInput && showIssues && <IssuesList issues={issues} />}
       {isLoading && <Loading>Loading Issues...</Loading>}
     </>
   );

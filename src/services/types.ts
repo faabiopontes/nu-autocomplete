@@ -11,7 +11,7 @@ export interface IResponseIssues {
 
 export interface IResponseIssuesItems {
   id: string;
-  url: string;
+  html_url: string;
   title: string;
   labels: IResponseIssuesItemsLabels[];
 }
