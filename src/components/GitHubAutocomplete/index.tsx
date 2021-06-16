@@ -1,4 +1,5 @@
-import { KeyboardEvent, useState } from "react";
+import { useState, useCallback } from "react";
+import useKeyPress from "../../hooks/keypress";
 import { useToast } from "../../hooks/toast";
 import { searchIssuesByText } from "../../services/api";
 import { IResponseIssuesItems } from "../../services/types";
@@ -37,39 +38,26 @@ const GitHubAutocomplete = () => {
     }
   };
 
-  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    const pressedKey = e.key;
-    console.log({ pressedKey });
-
-    switch (pressedKey) {
-      case "Enter":
-        // @TODO - Review what will be done when Enter is pressed
-        // setActiveIssue(0);
-        // setShowIssues(false);
-        // setUserInput(filteredIssues[activeIssue]);
-        break;
-
-      case "ArrowUp":
-        if (activeIssue === 0) {
-          return;
-        }
-
-        setActiveIssue((activeIssue) => activeIssue - 1);
-        break;
-
-      case "ArrowDown":
-        if (activeIssue - 1 === filteredIssues.length) {
-          return;
-        }
-
-        setActiveIssue((activeIssue) => activeIssue + 1);
-        break;
+  const selectNextIssue = () => {
+    if (activeIssue === filteredIssues.length - 1) {
+      return;
     }
+
+    setActiveIssue((prevActiveIssue) => prevActiveIssue + 1);
   };
+  useKeyPress("ArrowDown", () => selectNextIssue());
+
+  const selectPreviousIssue = useCallback(() => {
+    if (activeIssue === 0) {
+      return;
+    }
+
+    setActiveIssue((prevActiveIssue) => prevActiveIssue - 1);
+  }, [activeIssue]);
+  useKeyPress("ArrowUp", () => selectPreviousIssue());
 
   const onSelect = (selectedIndex: number) => {
     setActiveIssue(selectedIndex);
-    setShowIssues(true);
   };
 
   return (
@@ -77,11 +65,10 @@ const GitHubAutocomplete = () => {
       <Input
         type="text"
         onChange={onChange}
-        onKeyDown={onKeyDown}
-        // create a onBlur event to hide the list?
         value={userInput}
         placeholder="Type here to get React issues"
       />
+      <p>{activeIssue}</p>
       {userInput && showIssues && (
         <IssuesList
           onSelect={onSelect}
