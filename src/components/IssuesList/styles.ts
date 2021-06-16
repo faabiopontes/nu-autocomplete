@@ -29,8 +29,7 @@ export const IssuesList = styled.ul`
   margin-top: 0px;
   overflow-y: auto;
   padding-left: 0;
-  width: calc(300px + 1rem);
-  max-width: 100%;
+  width: 100%;
 
   ${Issue}:hover {
     background-color: #364156;

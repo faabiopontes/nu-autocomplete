@@ -65,6 +65,7 @@ const GitHubAutocomplete = () => {
         onKeyDown={onKeyDown}
         // create a onBlur event to hide the list?
         value={userInput}
+        placeholder="Type here to get React issues"
       />
       {userInput && showIssues && (
         <IssuesList
