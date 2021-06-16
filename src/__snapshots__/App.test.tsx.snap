@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should be rendered 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <h1>
+        Welcome to NUAutocomplete
+      </h1>
+      <p>
+        Below you should type any term and it will be searched through all React GitHub issues
+      </p>
+      <p>
+        When the text field is selected you can use the UP and DOWN keyboard keys to go through the results shown
+      </p>
+      <p>
+        By clicking or pressing Enter when a specific issue is selected a new tab will open with their page
+      </p>
+      <input
+        class="sc-iCoGMd bcqdft"
+        placeholder="Type here to get React issues"
+        type="text"
+        value=""
+      />
+      
+      <div
+        class="sc-bdnxRM donqmm"
+      />
+    </div>
+  </body>,
+  "container": <div>
+    <h1>
+      Welcome to NUAutocomplete
+    </h1>
+    <p>
+      Below you should type any term and it will be searched through all React GitHub issues
+    </p>
+    <p>
+      When the text field is selected you can use the UP and DOWN keyboard keys to go through the results shown
+    </p>
+    <p>
+      By clicking or pressing Enter when a specific issue is selected a new tab will open with their page
+    </p>
+    <input
+      class="sc-iCoGMd bcqdft"
+      placeholder="Type here to get React issues"
+      type="text"
+      value=""
+    />
+    
+    <div
+      class="sc-bdnxRM donqmm"
+    />
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

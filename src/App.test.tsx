@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render } from "@testing-library/react";
+import App from "./App";
 
-test('renders autocomplete', () => {
-  render(<App />);
-  const autocompleteElement = screen.getByText(/Autocomplete/i);
-  expect(autocompleteElement).toBeInTheDocument();
+describe("App", () => {
+  it("should be rendered", () => {
+    const component = render(<App />);
+    expect(component).toMatchSnapshot();
+  });
 });
