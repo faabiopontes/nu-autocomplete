@@ -18,7 +18,7 @@ const api = axios.create({
   headers,
 });
 const milisecondsWaitedBeforeDoingRequest = 300;
-const resultsPerPage = 10;
+const resultsPerPage = 15;
 
 const searchAPI = (terms: string[]) =>
   api.get<IResponseIssues>(

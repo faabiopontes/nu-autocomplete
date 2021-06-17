@@ -1,29 +1,29 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { IResponseIssuesItems } from "../../services/types";
 import LabelsList from "../LabelsList/index";
 import * as S from "./styles";
 import useKeyPress from "../../hooks/keypress";
-import { openInNewTab } from "../../utils/index";
+import { openInNewTab, scrollToElement } from "../../utils/index";
 
 interface ComponentProps {
   issues: IResponseIssuesItems[];
 }
 
-export interface IssueItem extends HTMLLIElement {
-  dataset: {
-    index: string;
-  };
-}
-
 const IssuesList = ({ issues }: ComponentProps) => {
   const [activeIssue, setActiveIssue] = useState(0);
+  const issuesRefs = useRef<Array<HTMLLIElement | null>>([]);
 
   const selectNextIssue = () => {
     if (activeIssue === issues.length - 1) {
       return;
     }
 
-    setActiveIssue((prevActiveIssue) => prevActiveIssue + 1);
+    const element = issuesRefs.current[activeIssue + 1];
+    if (element) {
+      scrollToElement(element);
+    }
+
+    setActiveIssue((currentActiveIssue) => currentActiveIssue + 1);
   };
   useKeyPress("ArrowDown", () => selectNextIssue());
 
@@ -32,7 +32,12 @@ const IssuesList = ({ issues }: ComponentProps) => {
       return;
     }
 
-    setActiveIssue((prevActiveIssue) => prevActiveIssue - 1);
+    const element = issuesRefs.current[activeIssue - 1];
+    if (element) {
+      scrollToElement(element, true);
+    }
+
+    setActiveIssue((currentActiveIssue) => currentActiveIssue - 1);
   };
   useKeyPress("ArrowUp", () => selectPreviousIssue());
 
@@ -59,6 +64,7 @@ const IssuesList = ({ issues }: ComponentProps) => {
       {issues.map(({ id, title, labels }, index) => (
         <S.Issue
           isActive={index === activeIssue}
+          ref={(element) => (issuesRefs.current[index] = element)}
           key={id}
           onClick={() => onSelect(index)}
         >
