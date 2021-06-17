@@ -4,8 +4,6 @@ export interface IHeaders {
 }
 
 export interface IResponseIssues {
-  total_count: number;
-  imcomplete_results: boolean;
   items: IResponseIssuesItems[];
 }
 
@@ -20,5 +18,4 @@ export interface IResponseIssuesItemsLabels {
   id: number;
   name: string;
   color: string;
-  default: boolean;
 }

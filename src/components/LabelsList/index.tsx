@@ -1,20 +1,11 @@
-import { IResponseIssuesItemsLabels } from '../../services/types';
-import { Label, Container } from './styles';
+import { Label, Container } from "./styles";
+import { LabelsListComponentProps } from "./types";
 
-interface ComponentProps {
-  labels: IResponseIssuesItemsLabels[];
-}
-
-const LabelsList = ({
-  labels,
-}: ComponentProps) => {
+const LabelsList = ({ labels }: LabelsListComponentProps) => {
   return (
     <Container>
       {labels.map(({ name, id, color }) => (
-        <Label
-          key={id}
-          color={color}
-        >
+        <Label key={id} color={color}>
           {name}
         </Label>
       ))}
