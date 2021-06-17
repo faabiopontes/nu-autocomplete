@@ -1,6 +1,5 @@
 import axios from "axios";
-import { IHeaders, IResponseIssues } from "./types";
-import AwesomeDebouncePromise from "awesome-debounce-promise";
+import { IHeaders } from "./types";
 
 const githubPersonalAccessToken =
   process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN;
@@ -13,26 +12,15 @@ if (githubPersonalAccessToken) {
   headers.Authorization = `Bearer ${githubPersonalAccessToken}`;
 }
 
-const api = axios.create({
-  baseURL: "https://api.github.com",
+axios.create({
   headers,
 });
-const milisecondsWaitedBeforeDoingRequest = 300;
-const resultsPerPage = 15;
 
-const searchAPI = (terms: string[]) =>
-  api.get<IResponseIssues>(
-    `search/issues?q=${terms.join(" ")}&per_page=${resultsPerPage}`
-  );
-const searchAPIDebounced = AwesomeDebouncePromise(
-  searchAPI,
-  milisecondsWaitedBeforeDoingRequest
-);
+const api = {
+  async get<T>(url: string) {
+    const response = await axios.get<T>(url);
+    return response.data;
+  }
+}
 
-export const searchIssuesByText = async (text: string) => {
-  const terms = [text.trim(), `repo:facebook/react`];
-
-  const response = await searchAPIDebounced(terms);
-  const issues = response.data.items;
-  return issues;
-};
+export default api;

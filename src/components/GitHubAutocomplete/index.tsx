@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useToast } from "../../hooks/toast";
-import { searchIssuesByText } from "../../services/api";
+import { searchIssuesByText } from "../../services/github";
 import { IResponseIssuesItems } from "../../services/types";
 import IssuesList from "../IssuesList";
 import { Input, Loading } from "./styles";
