@@ -22,7 +22,7 @@ export const Issue = styled.li<IssueProps>`
     `}
 `;
 
-export const IssuesList = styled.ul`
+export const Container = styled.ul`
   border: 1px solid #364156;
   border-top-width: 0;
   list-style: none;

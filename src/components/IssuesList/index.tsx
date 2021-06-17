@@ -1,10 +1,9 @@
 import { useRef, useState } from "react";
 import LabelsList from "../LabelsList/index";
-import * as S from "./styles";
 import useKeyPress from "../../hooks/keypress";
 import { openInNewTab, scrollToElement } from "../../utils/index";
-import { IssuesListComponentProps } from './types';
-
+import { IssuesListComponentProps } from "./types";
+import { Container, Issue, NoIssues } from "./styles";
 
 const IssuesList = ({ issues }: IssuesListComponentProps) => {
   const [activeIssue, setActiveIssue] = useState(0);
@@ -53,13 +52,13 @@ const IssuesList = ({ issues }: IssuesListComponentProps) => {
   };
 
   if (!issues.length) {
-    return <S.NoIssues>No issues found!</S.NoIssues>;
+    return <NoIssues>No issues found!</NoIssues>;
   }
 
   return (
-    <S.IssuesList>
+    <Container>
       {issues.map(({ id, title, labels }, index) => (
-        <S.Issue
+        <Issue
           isActive={index === activeIssue}
           ref={(element) => (issuesRefs.current[index] = element)}
           key={id}
@@ -68,9 +67,9 @@ const IssuesList = ({ issues }: IssuesListComponentProps) => {
           {title}
           <br />
           <LabelsList labels={labels} />
-        </S.Issue>
+        </Issue>
       ))}
-    </S.IssuesList>
+    </Container>
   );
 };
 
