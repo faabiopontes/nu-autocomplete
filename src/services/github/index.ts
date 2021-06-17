@@ -1,12 +1,12 @@
-import { IResponseIssues } from "./types";
+import { GitHubIssuesResponse } from "./types";
 import AwesomeDebouncePromise from "awesome-debounce-promise";
-import api from './api';
+import api from '../api';
 
 const milisecondsWaitedBeforeDoingRequest = 300;
 const resultsPerPage = 15;
 
 const searchAPI = (terms: string[]) => {
-  return api.get<IResponseIssues>(
+  return api.get<GitHubIssuesResponse>(
     `https://api.github.com/search/issues?q=${terms.join(" ")}&per_page=${resultsPerPage}`
   );
 }

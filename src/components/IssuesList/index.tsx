@@ -1,15 +1,12 @@
 import { useRef, useState } from "react";
-import { IResponseIssuesItems } from "../../services/types";
 import LabelsList from "../LabelsList/index";
 import * as S from "./styles";
 import useKeyPress from "../../hooks/keypress";
 import { openInNewTab, scrollToElement } from "../../utils/index";
+import { IssuesListComponentProps } from './types';
 
-interface ComponentProps {
-  issues: IResponseIssuesItems[];
-}
 
-const IssuesList = ({ issues }: ComponentProps) => {
+const IssuesList = ({ issues }: IssuesListComponentProps) => {
   const [activeIssue, setActiveIssue] = useState(0);
   const issuesRefs = useRef<Array<HTMLLIElement | null>>([]);
 

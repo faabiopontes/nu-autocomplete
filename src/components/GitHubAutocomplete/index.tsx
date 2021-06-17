@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useToast } from "../../hooks/toast";
 import { searchIssuesByText } from "../../services/github";
-import { IResponseIssuesItems } from "../../services/types";
 import IssuesList from "../IssuesList";
 import { Input, Loading } from "./styles";
+import { IssuesListIssues } from '../IssuesList/types';
 
 const GitHubAutocomplete = () => {
-  const [issues, setIssues] = useState<IResponseIssuesItems[]>([]);
+  const [issues, setIssues] = useState<IssuesListIssues[]>([]);
   const [showIssues, setShowIssues] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);

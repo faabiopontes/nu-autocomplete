@@ -1,10 +1,10 @@
 import axios from "axios";
-import { IHeaders } from "./types";
+import { Headers } from "./types";
 
 const githubPersonalAccessToken =
   process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN;
 
-const headers: IHeaders = {
+const headers: Headers = {
   Accept: "application/vnd.github.v3+json",
 };
 
